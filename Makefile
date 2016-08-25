@@ -16,3 +16,10 @@ docker-image: docker/sqlite3
 
 clean:
 	rm -rf sqlite.zip sqlite-amalgamation* docker/sqlite3
+	dockerclean
+
+start:
+	gotty -w -p 8080 docker run --rm -it -v $(PWD)/data:/data:ro kenpu/sqlite3-cli \
+		rlwrap sqlite3 -column -header /data/201609-mycampus.sqlite3
+
+
